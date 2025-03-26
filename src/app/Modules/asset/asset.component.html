@@ -1,0 +1,44 @@
+<h2 class="text-dark font-weight-bold"><b>Assets</b></h2>
+<h3 class="text-muted">Explore your assets effortlessly with our comprehensive list</h3>
+
+<div class="d-flex justify-content-end mb-2">
+    <input type="text" [(ngModel)]="searchText" placeholder="Search..." class="form-control w-25">
+</div>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-hover shadow-sm rounded-lg bg-white">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col" class="bg-dark text-white text-center">Empire ID</th>
+                <th scope="col" class="bg-dark text-white text-center">Name</th>
+                <th scope="col" class="bg-dark text-white text-center">Description</th>
+                <th scope="col" class="bg-dark text-white text-center">Status</th>
+                <th scope="col" class="bg-dark text-white text-center">Capability</th>
+                <th scope="col" class="bg-dark text-white text-center">Portfolio</th>
+                <th scope="col" class="bg-dark text-white text-center">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users | assetEnrichCapabilityFilter: searchText">
+                <td class="text-dark font-weight-bold text-center">{{ user.empireId }}</td>
+                <td class="text-dark text-center">{{ user.name }}</td>
+                <td class="text-dark text-wrap" style="max-width: 250px;">{{ user.description }}</td>
+                <td class="text-center">
+                    <button class="btn btn-success font-weight-bold">{{ user.status }}</button>
+                </td>
+                <td class="text-dark text-center">-</td>
+                <td class="text-dark text-center">{{ user.portfolio }}</td>
+                <td class="text-center">
+                    <button class="btn btn-info">
+                        <i class="fas fa-eye"></i> 
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+  
+  
+   

@@ -1,0 +1,31 @@
+<h2 class="text-dark font-weight-bold ">Capability Mapping</h2>
+<h3 class="text-muted mb-4">Map assets to a predefined list of capabilities</h3>
+
+<div class="d-flex justify-content-end mb-4">
+    <input type="text" [(ngModel)]="searchText" placeholder="Search..." class="form-control w-25">
+</div>
+
+<table class="table table-bordered table-hover shadow-sm bg-white">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col" class="bg-dark text-white p-3">Empire ID</th>
+            <th scope="col" class="bg-dark text-white p-3">Name</th>
+            <th scope="col" class="bg-dark text-white p-3">Description</th>
+            <th scope="col" class="bg-dark text-white p-3">Original Capability</th>
+            <th scope="col" class="bg-dark text-white p-3">Recommended Capability</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of user | assetEnrichCapabilityFilter: searchText; let i = index;" class="align-middle">
+            <td class="text-dark font-weight-bold p-3">{{ user.empireId }}</td>
+            <td class="text-dark p-3">{{ user.name }}</td>
+            <td class="text-dark p-3">{{ user.description }}</td>
+            <td class="text-dark p-3">-</td>
+            <td class="text-dark p-3">
+                <button class="btn btn-warning rounded-pill px-4 py-2">{{ user.capability }}</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+

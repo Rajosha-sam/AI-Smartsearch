@@ -1,0 +1,66 @@
+<app-layout></app-layout> <!-- Navbar at the top -->
+
+<div class="chat-container d-flex flex-column align-items-center mt-4">
+  <div class="chat-box card shadow-lg" style="width: 100%; max-width: 1200px;">
+    
+    <!-- Chat Header -->
+    <div class="card-header d-flex justify-content-between align-items-center p-3 bg-light" style="border-top: 4px solid #ffa900;">
+      <h5 class="mb-0 text-dark fw-bold">Chat Messages</h5>
+      <div class="d-flex flex-row align-items-center">
+        <span class="badge bg-warning me-3">{{ chatMessages.length }}</span>
+        <i class="fas fa-minus me-3 text-muted fa-sm"></i>
+        <i class="fas fa-comments me-3 text-muted fa-sm"></i>
+        <i class="fas fa-times text-muted fa-sm"></i>
+      </div>
+    </div>
+
+    <!-- Chat Messages Area with Scroll -->
+    <div class="card-body chat-area p-3" style="max-height: 400px; overflow-y: auto;">
+      <div *ngFor="let message of chatMessages">
+        
+        <!-- User Messages -->
+        <div class="d-flex flex-row justify-content-end mb-3" *ngIf="message.sender === 'User'">
+          <div class="d-flex flex-column align-items-end">
+            <p class="small p-2 rounded-3 text-white bg-warning shadow-sm">{{ message.message }}</p>
+            <p class="small text-muted text-end">{{ message.time }}</p>
+          </div>
+        </div>
+
+        <!-- AI Messages -->
+        <div class="d-flex flex-row justify-content-start mb-3" *ngIf="message.sender === 'AI'">
+          <div class="d-flex flex-column align-items-start">
+            <p class="small p-2 rounded-3 bg-light shadow-sm">{{ message.message }}</p>
+            <p class="small text-muted">{{ message.time }}</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Chat Input -->
+    <div class="card-footer text-muted d-flex justify-content-between align-items-center p-3">
+      <div class="input-group">
+        <input type="text" [(ngModel)]="searchName" class="form-control rounded-start" placeholder="Type a message..."/>
+        <button class="btn btn-warning text-dark fw-bold" type="button" (click)="searchAndFetchChat()">
+          <i class="fas fa-paper-plane"></i> Send
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  

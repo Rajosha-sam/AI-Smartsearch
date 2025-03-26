@@ -1,0 +1,32 @@
+<form [formGroup]="loginform" (ngSubmit)="onSubmit()">
+    <div class="container">
+        <div class="circleTop"></div>
+        <div class="content">
+            <h1>AI SmartSearch</h1>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <br>
+                <input type="email" class="form" id="email" formControlName="email" aria-describedby="helpId" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <br>
+                <input type="password" class="form" id="password" formControlName="password" placeholder="Enter your password" required>
+            </div>
+            <p>
+                <a href="index.html">Forgot Password?</a>
+            </p>
+            <!-- <div class="icons">
+                <a href="http://www.google-plus.com"><i class="fa fa-google-plus-official" aria-hidden="true"></i></a>
+                <a href="https://www.facebook.com"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+                <a href="http://www.twitter.com"><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
+            </div> -->
+            <button type="submit" class="login-btn">Login</button>
+        </div>
+        <div class="circleBottom"></div>
+        <!-- Robot Animation -->
+        <!-- <div class="robot">
+            <img src="aiimage.jpg" alt="Robot" class="robot-img">
+        </div> -->
+    </div>
+</form>

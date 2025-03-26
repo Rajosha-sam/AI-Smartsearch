@@ -1,0 +1,155 @@
+<div>
+<h1 class="text-center" style="color: red;">USER DETAILS</h1>
+
+<div class="d-flex justify-content-end mx-5">
+
+  <input type="text" placeholder="search here" [(ngModel)]="searchtext" class="form-control me-3" style="max-width: 250px;">
+
+  <button class="btn btn-success" (click)="openModal()">
+    <i class="fas fa-user-plus me-2"></i> Add User
+  </button>
+</div>
+<button class="btn btn-primary mt-3 me-3" (click)="roleset()">
+  <i class="fas fa-cog"></i> Role Settings
+</button>
+
+<button class="btn btn-success mt-3" (click)="adminAccess()">
+  <i class="fas fa-user-shield"></i> Admin Access
+</button>
+
+
+<div>
+  <div class="d-flex mt-4">
+    <label class="fw-bold text-info text-uppercase me-3">FILTER:</label>
+
+    <div class="form-check me-4">
+      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" [(ngModel)]="selectedRole" value="All">
+      <label class="form-check-label fw-bold" for="flexRadioDefault1">All</label>
+    </div>
+    <div class="form-check me-3">
+      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" [(ngModel)]="selectedRole" value="Admin">
+      <label class="form-check-label fw-bold" for="flexRadioDefault2">Admin</label>
+    </div>
+    <div class="form-check me-3">
+      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3" [(ngModel)]="selectedRole" value="Privileged User">
+      <label class="form-check-label fw-bold" for="flexRadioDefault3">Privileged User</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4" [(ngModel)]="selectedRole" value="Report Viewer">
+      <label class="form-check-label fw-bold" for="flexRadioDefault4">Report Viewer</label>
+    </div>
+  </div>
+</div>
+
+<table class="table table-striped table-hover table-bordered shadow-sm rounded bg-white text-center align-middle mt-3"
+       *ngIf="showUserManagement">
+  <thead class="table-dark">  
+    <tr>
+      <th scope="col" class="p-3">S.No</th>
+      <th scope="col" class="p-3">NAME</th>
+      <th scope="col" class="p-3">EMAIL</th>
+      <th scope="col" class="p-3">PLACE</th>
+      <th scope="col" class="p-3">ACTIONS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of (getFilteredUsers() | searchFilter: searchtext | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }); let i = index"
+        class="align-middle">
+      <td class="fw-bold">{{ (currentPage - 1) * itemsPerPage + i + 1 }}</td>
+      <td>{{ user.name }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.place }}</td>
+      <td>
+        <button class="btn btn-danger me-3" (click)="onDelete(user.id)">
+          <i class="fas fa-trash-alt"></i> Delete
+        </button>
+        <button class="btn btn-primary" (click)="openModal(user.id)">
+          <i class="fas fa-pencil-alt"></i> Edit
+        </button>
+      </td>
+    </tr>
+  </tbody>
+  </table>
+
+  
+<br>
+<div  *ngIf="showActionsPersonaRule">
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover shadow-sm rounded-lg bg-white">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col" class="bg-dark text-white text-center">Persona</th>
+                <th scope="col" class="bg-dark text-white text-center">Rule </th>
+                <th scope="col" class="bg-dark text-white text-center">Actions </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of userss ">
+                <td class="text-dark text-center">{{ user.name }}</td>
+                <td class="text-dark text-wrap" style="max-width: 250px;">{{ user.description }}</td>
+                <td> <i class="fa-solid fa-pen-to-square me-3 text-primary"></i>
+                <i class="fa-solid fa-trash me-3 text-danger"></i></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</div>
+
+
+
+
+<div class="modal" tabindex="-1" style="display: block;" *ngIf="isModalOpen">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ userId ? 'Edit User' : 'Add User' }}</h5>
+        <button type="button" class="btn-close" (click)="closeModal()"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="loginform" (ngSubmit)="onSubmit()">
+          <div class="mb-4">
+            <label for="exampleInputname" class="form-label">Name</label>
+            <input type="text" class="form-control" id="exampleInputname" formControlName="name">
+          </div>
+
+          <div class="mb-4">
+            <label for="exampleInputEmail1" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="email">
+          </div>
+
+          <div class="mb-4">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" formControlName="password">
+          </div>
+
+          <div class="mb-4">
+            <label for="exampleInputPlace" class="form-label">Place</label>
+            <input type="text" class="form-control" id="exampleInputPlace" formControlName="place">
+          </div>
+
+          <div class="mb-4">
+            <label for="exampleInputAuthorize" class="form-label">Authorize</label>
+            <select class="form-select" formControlName="authorizeId">
+              <option value="1">ADMIN</option>
+              <option value="2">PRIVILEGE USER</option>
+              <option value="3">REPORT VIEWER</option>
+            </select>
+          </div>
+
+          <div>
+            <button type="submit" class="btn btn-success me-3">Submit</button>
+            <button type="button" class="btn btn-danger me-3" (click)="closeModal()">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+  <!-- Pagination Controls -->
+  <div class="d-flex justify-content-center mt-3">
+    <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
+  </div>

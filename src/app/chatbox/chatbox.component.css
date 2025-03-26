@@ -1,0 +1,134 @@
+/* Chat Wrapper - Flexbox Layout */
+.chat-wrapper {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  background-color: #f8f9fa;
+}
+
+ 
+/* app-layout {
+  width: 250px; 
+  height: 100vh;
+  background-color: #343a40; 
+  color: white;
+  position: fixed;
+  left: 0;
+  top: 0;
+  padding: 20px;
+  z-index: 1000; */
+ /* }    */
+
+.chat-container {
+  flex-grow: 1; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  margin-left: 250px; /* Push it to the right, next to the navbar */
+  width: calc(95% - 250px); /* Take full remaining width */
+  height: 100vh; /* Full screen height */
+  background: #fff;
+  position:absolute;
+  top:20px ;
+  left: 50px;
+}
+
+/* Chatbox - Full Screen */
+.chat-box {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  min-height: 100vh;
+  background: #fff;
+  padding: 20px;
+  border-radius: 0; /* Remove rounded corners for full screen */
+  box-shadow: none;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Chat Area - Adjust for Full Screen */
+.chat-area {
+  flex-grow: 1; /* Fill available space */
+  max-height: none;
+  overflow-y: auto;
+  background: #fff;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 20px;
+}
+
+/* Chat Messages */
+.chat-message {
+  max-width: 80%;
+  padding: 10px;
+  border-radius: 8px;
+  margin: 5px 0;
+  word-wrap: break-word;
+  display: inline-block;
+}
+
+.user-message {
+  background: #007bff;
+  color: white;
+  align-self: flex-end;
+  text-align: right;
+}
+
+.ai-message {
+  background: #e9ecef;
+  color: #333;
+  align-self: flex-start;
+}
+
+/* Search Box */
+.search-box {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.search-box input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.search-box button {
+  padding: 8px 15px;
+  border: none;
+  background: #007bff;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.search-box button:hover {
+  background: #0056b3;
+}
+
+/* Scrollbar Styling */
+.chat-area::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chat-area::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 5px;
+}
+
+.chat-area::-webkit-scrollbar-thumb:hover {
+  background: #aaa;
+}
+
+
+
+
+
+
+  

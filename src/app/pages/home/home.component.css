@@ -1,0 +1,48 @@
+
+    .feature-card {
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        text-align: center;
+        padding: 20px;
+       
+    }
+    .feature-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    .feature-icon {
+        font-size: 40px;
+        color: black;
+        margin-bottom: 10px;
+    }
+ 
+    
+    .content-container {
+        text-align: left;
+        position:absolute;
+        left:400px;
+        max-width: 100%; /* Adjust width as needed */
+      
+    }
+
+    .search-container {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    .search-input {
+        border-radius: 50px;
+        width: 50%;
+        padding: 10px 15px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .search-btn {
+        padding: 10px 20px;
+        border-radius: 50px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    
